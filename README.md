@@ -1,0 +1,1 @@
+# BMSTU_info_bot
