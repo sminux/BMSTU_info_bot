@@ -1,7 +1,7 @@
 '''
 Created on 17 янв. 2017 г.
 
-@author: Сергей
+@author: sminux
 '''
 
 token = "313632005:AAGs1N2K069R84ViJzN6yGUstFBUO_vNuSA"
