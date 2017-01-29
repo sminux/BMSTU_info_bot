@@ -1,1 +1,1 @@
-web: python3 bot.api
+web: (python -m http.server $PORT &) && (python bot.py)
