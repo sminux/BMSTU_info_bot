@@ -2,3 +2,4 @@ beautifulsoup4==4.5.1
 bs4==0.0.1
 pyTelegramBotAPI==2.3.0
 requests==2.11.1
+lxml==3.5.0
