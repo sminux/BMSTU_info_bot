@@ -51,15 +51,15 @@ def get_shedule_ch():
             lesson_cheslitel = [les.text for les in lesson_success]
             lesson_ordinary = [les.text for les in lesson_ordinary]
             day = [day.text for day in days]
+            
             answer_ch += '<b>{}</b>\n<b>{}</b> {}{}'.format(day,
-                                                            time,
-                                                            lesson_cheslitel,
-                                                            lesson_ordinary)
+                                                                time,
+                                                                lesson_cheslitel,
+                                                                lesson_ordinary)
 
         answer_ch += '\n'
-    answer_ch = answer_ch.replace('xa0', '')
+    answer_ch = answer_ch.replace('\\xa0', ' ')
     answer_ch = answer_ch.replace('[', '')
-    answer_ch = answer_ch.replace('\\', ' ')
     answer_ch = answer_ch.replace(']', '')
     answer_ch = answer_ch.replace("'", '')
     answer_ch = answer_ch.replace("<b></b> <b></b>", '')
@@ -84,15 +84,15 @@ def get_shedule_zn():
             lesson_znamenatel = [les.text for les in lesson_info]
             lesson_ordinary = [les.text for les in lesson_ordinary]
             day = [day.text for day in days]
+            
             answer_zn += '<b>{}</b>\n<b>{}</b> {}{}'.format(day,
                                                             time,
                                                             lesson_znamenatel,
                                                             lesson_ordinary)
 
         answer_zn += '\n'
-    answer_zn = answer_zn.replace('xa0', '')
+    answer_zn = answer_zn.replace('\\xa0', ' ')
     answer_zn = answer_zn.replace('[', '')
-    answer_zn = answer_zn.replace('\\', ' ')
     answer_zn = answer_zn.replace(']', '')
     answer_zn = answer_zn.replace("'", '')
     answer_zn = answer_zn.replace("<b></b> <b></b>", '')
@@ -101,7 +101,7 @@ def get_shedule_zn():
 
 @bot.message_handler(commands = ['help'])
 def handle_help(message):
-    bot.send_message(message.chat.id, 'Тебе никто не поможет 😈 \n\nP.S.\nЧтобы обратиться к порталу bmstu.wiki, пишите "Кто такой ФИО?"\nЧтобы узнать свой порядковый номер, запросите "список группы"\nТакже вы можете узнать "расписание" на неделю\nКоманда "новости" предоставит последнюю новостную заметку\nВопросы и предложения пишите автору: @sminux')
+    bot.send_message(message.chat.id, 'Тебе никто не поможет 😈 \nP.S.\n🔘Чтобы обратиться к порталу bmstu.wiki, пишите "Кто такой ФИО?"\n🔘Чтобы узнать свой порядковый номер, запросите "список группы"\n🔘Также вы можете узнать "расписание" на неделю\n🔘Команда "новости" предоставит последнюю новостную заметку\nℹ️Вопросы и предложения пишите автору: @sminux')
         
 @bot.message_handler(commands = ['start'])
 def handle_start(message):
@@ -133,7 +133,7 @@ def handle_text(message):
             log(message, answer)
             bot.send_message(message.chat.id, answer) 
         elif msg == 'список группы':
-            answer = "список группы ИУ8-" + (constants.sem).__str__() + "2:\n"
+            answer = "список группы ИУ8-" + (constants.sem).__str__() + "2:"
             i = 0
             for student in constants.group_list:
                 answer += '\n' + (i+1).__str__() + '.  ' + constants.group_list[i]
@@ -141,6 +141,7 @@ def handle_text(message):
             log(message, answer)
             bot.send_message(message.chat.id, answer)   
         elif msg == 'расписание':
+            answer = '📥 Загружаю...'
             if (get_week().find('числитель', 0)>=0):
                answer = get_shedule_ch()
             elif (get_week().find('знаменатель', 0)>=0): 
@@ -153,7 +154,7 @@ def handle_text(message):
             url_news = urlopen('https://vk.com/pr.bmstu').read()
             soup = BeautifulSoup(url_news, "lxml")
             news = soup.find('div', attrs={"class": "pi_text"})
-            answer = news.text
+            answer = '📰' + news.text
             log(message, answer)
             bot.send_message(message.chat.id, answer)              
         elif ((msg.find('кто такой', 0)>=0) | (msg.find('кто такая', 0)>=0) | (msg.find('Кто такой', 0)>=0) | (msg.find('Кто такая', 0)>=0)):
@@ -198,7 +199,7 @@ def handle_text(message):
             log(message, answer)
             bot.send_message(message.chat.id, answer)
         else:
-            log(message, answer) #убрать потом!!!
+            log(message, answer) 
             bot.send_message(message.chat.id, answer)
             
 
