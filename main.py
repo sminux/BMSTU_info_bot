@@ -142,6 +142,8 @@ def handle_text(message):
             bot.send_message(message.chat.id, answer)   
         elif msg == 'расписание':
             answer = '📥 Загружаю...'
+            log(message, answer)
+            bot.send_message(message.chat.id, answer)  
             if (get_week().find('числитель', 0)>=0):
                answer = get_shedule_ch()
             elif (get_week().find('знаменатель', 0)>=0): 
