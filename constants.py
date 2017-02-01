@@ -8,7 +8,7 @@ token = "313632005:AAGs1N2K069R84ViJzN6yGUstFBUO_vNuSA"
 
 wiki = 'http://ru.bmstu.wiki/'
 
-url_schedule = 'https://students.bmstu.ru/schedule/e765e806-e742-11e3-9709-024716c10819'
+url_schedule = 'https://students.bmstu.ru/schedule/e7660c00-e742-11e3-8f5e-024716c10819'
 
 sem = 6
 
