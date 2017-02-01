@@ -101,7 +101,7 @@ def get_shedule_zn():
 
 @bot.message_handler(commands = ['help'])
 def handle_help(message):
-    bot.send_message(message.chat.id, 'Тебе никто не поможет 😈 \nP.S.\n🔘Чтобы обратиться к порталу bmstu.wiki, пишите "Кто такой ФИО?"\n🔘Чтобы узнать свой порядковый номер, запросите "список группы"\n🔘Также вы можете узнать "расписание" на неделю\n🔘Команда "новости" предоставит последнюю новостную заметку\nℹ️Вопросы и предложения пишите автору: @sminux')
+    bot.send_message(message.chat.id, 'Тебе никто не поможет 😈 \nP.S.\n🔘Чтобы обратиться к порталу ru.bmstu.wiki, пишите "Кто такой ФИО?"\n🔘Чтобы узнать свой порядковый номер, запросите "список группы"\n🔘Также вы можете узнать "расписание" на неделю\n🔘Команда "новости" предоставит последнюю новостную заметку\nℹ️Вопросы и предложения пишите автору: @sminux')
         
 @bot.message_handler(commands = ['start'])
 def handle_start(message):
@@ -109,12 +109,12 @@ def handle_start(message):
     user_markup.row('/start', '/stop')
     user_markup.row('список группы', 'диск', 'неделя (ч/з)')
     user_markup.row('новости', 'расписание' )
-    bot.send_message(message.from_user.id, "Чем могу помочь...", reply_markup=user_markup)
+    bot.send_message(message.chat.id, "Чем могу помочь...", reply_markup=user_markup)
     
 @bot.message_handler(commands = ['stop'])
 def handle_stop(message):   
      hide_markup = telebot.types.ReplyKeyboardRemove()
-     bot.send_message(message.from_user.id, "...", reply_markup = hide_markup)
+     bot.send_message(message.chat.id, "...", reply_markup = hide_markup)
 
 @bot.message_handler(content_types = ['text'])
 def handle_text(message):
