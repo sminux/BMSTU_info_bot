@@ -143,7 +143,7 @@ def handle_text(message):
             answer = get_week()
             log(message, answer)
             bot.send_message(message.chat.id, answer) 
-            img = open('plan.png', 'rb')               
+            img = open('Plan.png', 'rb')               
             bot.send_photo(message.chat.id, img)
             img.close()
         elif msg == 'список группы':
