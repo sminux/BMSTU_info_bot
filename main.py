@@ -7,6 +7,7 @@ Created on 17 янв. 2017 г.
 import telebot
 import constants
 import random
+import datetime
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -106,15 +107,25 @@ def handle_help(message):
 @bot.message_handler(commands = ['start'])
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    user_markup.row('/start', '/stop')
+    user_markup.row('/start', '/stop', '/news')
     user_markup.row('список группы', 'диск', 'неделя (ч/з)')
-    user_markup.row('новости', 'расписание' )
+    user_markup.row('расписание', 'сегодня' )
     bot.send_message(message.chat.id, "Чем могу помочь...", reply_markup=user_markup)
     
 @bot.message_handler(commands = ['stop'])
 def handle_stop(message):   
      hide_markup = telebot.types.ReplyKeyboardRemove()
      bot.send_message(message.chat.id, "...", reply_markup = hide_markup)
+     
+@bot.message_handler(commands = ['news'])
+def handle_news(message):   
+        answer = 'Въ салонѣ тихо, пыльно и пусто.\nТолько въ одномъ изъ угловъ вышиваетъ гладью пожилая княжна.'
+        url_news = urlopen('https://vk.com/pr.bmstu').read()
+        soup = BeautifulSoup(url_news, "lxml")
+        news = soup.find('div', attrs={"class": "pi_text"})
+        answer = '📰' + news.text
+        log(message, answer)
+        bot.send_message(message.chat.id, answer) 
 
 @bot.message_handler(content_types = ['text'])
 def handle_text(message):
@@ -149,16 +160,41 @@ def handle_text(message):
             elif (get_week().find('знаменатель', 0)>=0): 
                 answer = get_shedule_zn()
             log(message, answer)
-            bot.send_message(message.chat.id, answer, parse_mode='HTML')   
-        elif msg == 'новости':
-            answer = 'Въ салонѣ тихо, пыльно и пусто.\nТолько въ одномъ изъ угловъ вышиваетъ гладью пожилая княжна.'
-
-            url_news = urlopen('https://vk.com/pr.bmstu').read()
-            soup = BeautifulSoup(url_news, "lxml")
-            news = soup.find('div', attrs={"class": "pi_text"})
-            answer = '📰' + news.text
+            bot.send_message(message.chat.id, answer, parse_mode='HTML')  
+        elif msg == 'сегодня':
+            directory = "\Schedule"
+            if (datetime.datetime.today().isoweekday()==1):
+                img = open(directory + '/1.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()
+            elif (datetime.datetime.today().isoweekday()==2): 
+                img = open(directory + '/2.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()
+            elif (datetime.datetime.today().isoweekday()==3): 
+                img = open(directory + '/3.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()
+            elif (datetime.datetime.today().isoweekday()==4): 
+                img = open(directory + '/4.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()
+            elif (datetime.datetime.today().isoweekday()==5): 
+                img = open(directory + '/5.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()
+            elif (datetime.datetime.today().isoweekday()==6): 
+                img = open(directory + '/6.png', 'rb')               
+                bot.send_photo(message.chat.id, img)
+                img.close()  
+            else:
+                answer = 'Въ салонѣ тихо, пыльно и пусто.\nТолько въ одномъ изъ угловъ вышиваетъ гладью пожилая княжна.'
+                log(message, answer)
+                bot.send_message(message.chat.id, answer)  
+                
+                
             log(message, answer)
-            bot.send_message(message.chat.id, answer)              
+            bot.send_message(message.chat.id, answer, parse_mode='HTML')              
         elif ((msg.find('кто такой', 0)>=0) | (msg.find('кто такая', 0)>=0) | (msg.find('Кто такой', 0)>=0) | (msg.find('Кто такая', 0)>=0)):
             str = msg.replace("?", '')
             str = str.replace(',', '')
