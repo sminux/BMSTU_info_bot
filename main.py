@@ -162,29 +162,28 @@ def handle_text(message):
             log(message, answer)
             bot.send_message(message.chat.id, answer, parse_mode='HTML')  
         elif msg == 'сегодня':
-            directory = "\Schedule"
             if (datetime.datetime.today().isoweekday()==1):
-                img = open(directory + '/1.png', 'rb')               
+                img = open('/1.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==2): 
-                img = open(directory + '/2.png', 'rb')               
+                img = open('/2.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==3): 
-                img = open(directory + '/3.png', 'rb')               
+                img = open('/3.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==4): 
-                img = open(directory + '/4.png', 'rb')               
+                img = open('/4.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==5): 
-                img = open(directory + '/5.png', 'rb')               
+                img = open('/5.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==6): 
-                img = open(directory + '/6.png', 'rb')               
+                img = open('/6.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()  
             else:
