@@ -166,27 +166,27 @@ def handle_text(message):
             bot.send_message(message.chat.id, answer, parse_mode='HTML')  
         elif msg == 'сегодня':
             if (datetime.datetime.today().isoweekday()==1):
-                img = open('Schedule/1.png', 'rb')               
+                img = open('Schedule\\1.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==2): 
-                img = open('Schedule/2.png', 'rb')               
+                img = open('Schedule\\2.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==3): 
-                img = open('Schedule/3.png', 'rb')               
+                img = open('Schedule\\3.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==4): 
-                img = open('Schedule/4.png', 'rb')               
+                img = open('Schedule\\4.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==5): 
-                img = open('Schedule/5.png', 'rb')               
+                img = open('Schedule\\5.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()
             elif (datetime.datetime.today().isoweekday()==6): 
-                img = open('Schedule/6.png', 'rb')               
+                img = open('Schedule\\6.png', 'rb')               
                 bot.send_photo(message.chat.id, img)
                 img.close()  
             else:
