@@ -191,10 +191,7 @@ def handle_text(message):
                 answer = 'Въ салонѣ тихо, пыльно и пусто.\nТолько въ одномъ изъ угловъ вышиваетъ гладью пожилая княжна.'
                 log(message, answer)
                 bot.send_message(message.chat.id, answer)  
-                
-                
-            log(message, answer)
-            bot.send_message(message.chat.id, answer, parse_mode='HTML')              
+            
         elif ((msg.find('кто такой', 0)>=0) | (msg.find('кто такая', 0)>=0) | (msg.find('Кто такой', 0)>=0) | (msg.find('Кто такая', 0)>=0)):
             str = msg.replace("?", '')
             str = str.replace(',', '')
