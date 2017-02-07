@@ -143,6 +143,9 @@ def handle_text(message):
             answer = get_week()
             log(message, answer)
             bot.send_message(message.chat.id, answer) 
+            img = open('plan.png', 'rb')               
+            bot.send_photo(message.chat.id, img)
+            img.close()
         elif msg == 'список группы':
             answer = "список группы ИУ8-" + (constants.sem).__str__() + "2:"
             i = 0
